@@ -4,6 +4,17 @@
     <meta name="description" content="Basic example for Gaze Control component."></meta>
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="../../dist/aframe-gaze-control-component.min.js"></script>
+    <script>
+      var event = new CustomEvent('gazemove', {
+        detail: {
+          'x': 0,
+          'y': 0,
+        },
+        bubbles: true,
+        cancelable: true
+      });
+      event.initEvent('gazemove', true, true);
+    </script>
   </head>
   <body>
     <a-scene>
