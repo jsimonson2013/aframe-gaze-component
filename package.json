@@ -57,6 +57,7 @@
     "sinon-chai": "^2.8.0",
     "shx": "^0.1.1",
     "snazzy": "^4.0.0",
+    "webgazer": "git+https://git@github.com/brownhci/WebGazer.git",
     "webpack": "^1.13.0"
   },
   "semistandard": {
