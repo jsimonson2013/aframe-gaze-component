@@ -251,7 +251,6 @@ AFRAME.registerComponent('gaze-control', {
        var movementY = movement_speed;
      } // User is looking at center or not at another sector
      else{
-       console.log('middle');
        var movementX = 0;
        var movementY = 0;
      }
