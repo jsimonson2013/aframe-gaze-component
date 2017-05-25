@@ -27,13 +27,16 @@ AFRAME.registerComponent('gaze-control', {
      this.yawObject.position.y = 10;
      this.yawObject.add(this.pitchObject);
 
-     this.setupHMDControls();
+     // From setupHMDControls
+     this.dolly = new THREE.Object3D();
+     this.euler = new THREE.Euler();
+     this.zeroQuaternion = new THREE.Quaternion();
+
      this.onGazeMove = this.onGazeMove.bind(this);
    },
 
    update: function () {
      if (!this.data.enabled) { return; }
-     this.controls.update();
      this.updateOrientation();
      this.updatePosition();
    },
@@ -53,16 +56,6 @@ AFRAME.registerComponent('gaze-control', {
 
    remove: function () {
      this.pause();
-   },
-
-   bindMethods: function () {
-   },
-
-   setupHMDControls: function () {
-     this.dolly = new THREE.Object3D();
-     this.euler = new THREE.Euler();
-     this.controls = new THREE.VRControls(this.dolly);
-     this.zeroQuaternion = new THREE.Quaternion();
    },
 
    addEventListeners: function () {
