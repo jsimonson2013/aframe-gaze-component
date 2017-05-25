@@ -152,69 +152,59 @@ AFRAME.registerComponent('gaze-control', {
      this.zeroQuaternion.setFromEuler(euler);
    },
 
-   // Listener for gaze events that manipulates the scene based on gaze
-   // location in window. Window is broken into 9 sectors in a 3x3 grid.
-   // The center sector is the largest because the focal area consumes
-   // most of the screen.
    onGazeMove: function(event) {
-     // Base sector size and movements on the size of the window
      var width = window.innerWidth;
      var height = window.innerHeight;
 
-     // Because of landscape orientation and focal area, a larger portion
-     // of the height contributes to a sector size than width.
-     var sector_height = height/4; // height dimension of sector
-     var sector_width = width/6; // width dimension of sector
+     var sector_height = height/4;
+     var sector_width = width/6;
 
-     // Speed is somewhat arbitrary but obtained based on what felt
-     // comfortable in testing.
-     var movement_speed = 25; // speed of panning
+     var movement_speed = 25;
 
-     // Adapted from onMouseMove()
+     // From onMouseMove()
      var pitchObject = this.pitchObject;
      var yawObject = this.yawObject;
      var previousGazeEvent = this.previousGazeEvent;
      if (!this.data.enabled) { return; }
 
-     // Bottom Left
      if (event.detail.x > 0 && event.detail.x < sector_width && event.detail.y > 0 && event.detail.y < sector_height){
        var movementX = -movement_speed;
        var movementY = -movement_speed;
-     } // Bottom Center
+     }
      else if (event.detail.x > sector_width && event.detail.x < width - sector_width && event.detail.y > 0 && event.detail.y < sector_height){
        var movementX = 0;
        var movementY = -movement_speed;
-     } // Bottom Right
+     }
      else if (event.detail.x > width - sector_width && event.detail.x < width && event.detail.y > 0 && event.detail.y < sector_height){
        var movementX = movement_speed;
        var movementY = -movement_speed;
-     } // Middle Left
+     }
      else if (event.detail.x > 0 && event.detail.x < sector_width && event.detail.y > sector_height && event.detail.y < height - sector_height){
        var movementX = -movement_speed;
        var movementY = 0;
-     } // Middle Right
+     }
      else if (event.detail.x > width - sector_width && event.detail.x < width && event.detail.y > sector_height && event.detail.y < height - sector_height){
        var movementX = movement_speed;
        var movementY = 0;
-     } // Top Left
+     }
      else if (event.detail.x > 0 && event.detail.x < sector_width && event.detail.y > height - sector_height && event.detail.y < height){
        var movementX = -movement_speed
        var movementY = movement_speed;
-     } // Top Center
+     }
      else if (event.detail.x > sector_width && event.detail.x < width - sector_width && event.detail.y > height - sector_height && event.detail.y < height){
        var movementX = 0;
        var movementY = movement_speed;
-     } // Top Right
+     }
      else if (event.detail.x > width - sector_width && event.detail.x < width && event.detail.y > height - sector_height && event.detail.y < height){
        var movementX = movement_speed;
        var movementY = movement_speed;
-     } // User is looking at center or not at another sector
+     }
      else{
        var movementX = 0;
        var movementY = 0;
      }
 
-     // Adapted from onMouseMove()
+     // From onMouseMove()
      this.previousGazeEvent = event;
      yawObject.rotation.y -= movementX * 0.002;
      pitchObject.rotation.x -= movementY * 0.002;
