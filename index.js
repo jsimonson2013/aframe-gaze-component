@@ -155,16 +155,10 @@ AFRAME.registerComponent('gaze-control', {
    onGazeMove: function(event) {
      var width = window.innerWidth;
      var height = window.innerHeight;
-
      var sector_height = height/4;
      var sector_width = width/6;
-
      var movement_speed = 25;
 
-     // From onMouseMove()
-     var pitchObject = this.pitchObject;
-     var yawObject = this.yawObject;
-     var previousGazeEvent = this.previousGazeEvent;
      if (!this.data.enabled) { return; }
 
      if (event.detail.x > 0 && event.detail.x < sector_width && event.detail.y > 0 && event.detail.y < sector_height){
@@ -206,8 +200,8 @@ AFRAME.registerComponent('gaze-control', {
 
      // From onMouseMove()
      this.previousGazeEvent = event;
-     yawObject.rotation.y -= movementX * 0.002;
-     pitchObject.rotation.x -= movementY * 0.002;
-     pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, pitchObject.rotation.x));
+     this.yawObject.rotation.y -= movementX * 0.002;
+     this.pitchObject.rotation.x -= movementY * 0.002;
+     this.pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, this.pitchObject.rotation.x));
    }
  });
