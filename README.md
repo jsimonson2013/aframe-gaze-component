@@ -4,7 +4,7 @@
 [![License](http://img.shields.io/npm/l/aframe-gaze-control-component.svg?style=flat-square)](https://npmjs.org/package/aframe-gaze-control-component)
 
 Look control that interprets gaze data as input.
-
+<!--
 For [A-Frame](https://aframe.io).
 
 ### API
@@ -43,7 +43,7 @@ version of A-Frame:
 angle install aframe-gaze-control-component
 ```
 -->
-
+<!--
 #### npm
 
 Install via npm:
@@ -58,3 +58,4 @@ Then require and use.
 require('aframe');
 require('aframe-gaze-control-component');
 ```
+-->
