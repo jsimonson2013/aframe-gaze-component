@@ -14,6 +14,10 @@ Usage requires Node.JS as well as Firefox.
 * install packages: `npm install`
 * run the application: `npm run start`
 
+### Example
+
+A live example can be found [here](http://jacobsimonson.me:7000).
+
 <!--
 For [A-Frame](https://aframe.io).
 
