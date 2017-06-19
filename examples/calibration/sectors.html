@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>A-Frame Gaze Control Component - Basic</title>
+    <meta name="description" content="Basic example for Gaze Control component."></meta>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="../../dist/aframe-gaze-control-component.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div id="top-left"></div>
+    <div id="top-middle"></div>
+    <div id="top-right"></div>
+    <div id="middle-left"></div>
+    <div id="middle-middle">
+      <p>This is a visualization of the sectors that the gaze tracker listener will differentiate between.</p>
+      <button onclick="navigateToGazer()" align="center">Click here to continue!</button>
+    </div>
+    <div id="middle-right"></div>
+    <div id="bottom-left"></div>
+    <div id="bottom-middle"></div>
+    <div id="bottom-right"></div>
+  </body>
+  <script>
+    navigateToGazer = function(){
+      window.location = "./gazer.html"
+    }
+  </script>
+</html>

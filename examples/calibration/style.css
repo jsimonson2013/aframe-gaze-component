@@ -1,28 +1,37 @@
+#welcome-heading{
+  position: absolute;
+  left: 10%;
+  top: 25%;
+  font-size: 60px;
+}
+
 #top-left{
   position: absolute;
   top: 0;
   left: 0;
   height: 25%;
   width: 16.6%;
-  background-color: lightblue;
+  background-color: white;
   border: solid;
 }
 
 #top-middle{
   position: absolute;
+  top: 0;
   left: 16.6%;
   height: 25%;
   width: 66.8%;
-  background-color: lightgreen;
+  background-color: lightgrey;
   border: solid;
 }
 
 #top-right{
   position: absolute;
+  top: 0;
   right: 0;
   height: 25%;
   width: 16.6%;
-  background-color: yellow;
+  background-color: grey;
   border: solid;
 }
 #middle-left{
@@ -31,7 +40,7 @@
   left: 0;
   height: 50%;
   width: 16.6%;
-  background-color: lightgreen;
+  background-color: lightgrey;
   border: solid;
 }
 
@@ -42,7 +51,7 @@
   left: 16.6%;
   height: 50%;
   width: 66.8%;
-  background-color: yellow;
+  background-color: grey;
   border: solid;
 }
 
@@ -52,7 +61,7 @@
   right: 0;
   height: 50%;
   width: 16.6%;
-  background-color: lightblue;
+  background-color: white;
   border: solid;
 }
 
@@ -62,7 +71,7 @@
   left: 0;
   height: 25%;
   width: 16.6%;
-  background-color: yellow;
+  background-color: grey;
   border: solid;
 }
 
@@ -72,7 +81,7 @@
   left: 16.6%;
   height: 25%;
   width: 66.8%;
-  background-color: lightblue;
+  background-color: white;
   border: solid;
 }
 
@@ -82,6 +91,6 @@
   right: 0;
   height: 25%;
   width: 16.6%;
-  background-color: lightgreen;
+  background-color: lightgrey;
   border: solid;
 }
