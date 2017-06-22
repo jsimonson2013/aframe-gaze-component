@@ -21,6 +21,15 @@ html{
   cursor: none;
 }
 
+#sectors{
+  width: 100%;
+  height: 100%;
+}
+
+#sectors:hover{
+  cursor: crosshair;
+}
+
 #welcome-heading{
   display: block;
   position: absolute;
@@ -58,88 +67,129 @@ html{
   position: absolute;
   top: 0;
   left: 0;
-  height: 25%;
-  width: 16.6%;
+  height: 24%;
+  width: 16%;
   background-color: white;
-  border: solid;
+  border: solid black;
+  color: white;
+}
+
+#top-left:hover{
+  color: black;
 }
 
 #top-middle{
   position: absolute;
   top: 0;
-  left: 16.6%;
-  height: 25%;
-  width: 66.8%;
+  left: 16.5%;
+  height: 24%;
+  width: 66.5%;
   background-color: lightgrey;
-  border: solid;
+  border: solid black;
+  color: lightgrey;
+}
+
+#top-middle:hover{
+  color: black;
 }
 
 #top-right{
   position: absolute;
   top: 0;
   right: 0;
-  height: 25%;
-  width: 16.6%;
+  height: 24%;
+  width: 16%;
   background-color: grey;
-  border: solid;
+  border: solid black;
+  color: grey;
 }
+
+#top-right:hover{
+  color: black;
+}
+
 #middle-left{
   position: absolute;
-  top: 25%;
+  top: 25.5%;
   left: 0;
-  height: 50%;
-  width: 16.6%;
+  height: 48.5%;
+  width: 16%;
   background-color: lightgrey;
-  border: solid;
+  border: solid black;
+  color: lightgrey;
+}
+
+#middle-left:hover{
+  color: black;
 }
 
 #middle-middle{
   position: absolute;
-  padding: 75px 50px 50px 75px;
-  top: 25%;
-  left: 16.6%;
-  height: 50%;
-  width: 66.8%;
+  top: 25.5%;
+  left: 16.5%;
+  height: 48.5%;
+  width: 66.5%;
   background-color: grey;
-  border: solid;
+  border: solid black;
+  color: black;
 }
 
 #middle-right{
   position: absolute;
-  top: 25%;
+  top: 25.5%;
   right: 0;
-  height: 50%;
-  width: 16.6%;
+  height: 48.5%;
+  width: 16%;
   background-color: white;
-  border: solid;
+  border: solid black;
+  color: white;
+}
+
+#middle-right:hover{
+  color: black;
 }
 
 #bottom-left{
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 25%;
-  width: 16.6%;
+  height: 24%;
+  width: 16%;
   background-color: grey;
-  border: solid;
+  border: solid black;
+  color: grey;
+}
+
+#bottom-left:hover{
+  color: black;
 }
 
 #bottom-middle{
   position: absolute;
   bottom: 0;
-  left: 16.6%;
-  height: 25%;
-  width: 66.8%;
+  left: 16.5%;
+  height: 24%;
+  width: 66.5%;
   background-color: white;
-  border: solid;
+  border: solid black;
+  color: white;
+}
+
+#bottom-middle:hover{
+  color: black;
 }
 
 #bottom-right{
   position: absolute;
   bottom: 0;
   right: 0;
-  height: 25%;
-  width: 16.6%;
+  height: 24%;
+  width: 16%;
   background-color: lightgrey;
-  border: solid;
+  border: solid black;
+  color: lightgrey;
+}
+
+#bottom-right:hover{
+  color: black;
 }
