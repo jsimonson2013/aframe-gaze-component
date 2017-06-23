@@ -8,17 +8,22 @@
   </head>
   <body>
   <div id="sectors" onclick="navigateToCalibrate()">
-    <div id="top-left">blah blah blah blah blah blah</div>
-    <div id="top-middle">blah blah blah blah blah blah</div>
-    <div id="top-right">blah blah blah blah blah blah</div>
-    <div id="middle-left">blah blah blah blah blah blah</div>
+    <div id="top-left">The camera rotates <b>upward and to the left</b> when the user gazes inside this section.</div>
+    <div id="top-middle">The camera rotates <b>only upwards</b> when the user gazes inside this section.</div>
+    <div id="top-right">The camera rotates <b>upward and to the right</b> when the user gazes inside this section.</div>
+    <div id="middle-left">The camera rotates <b>only to the left</b> when the user gazes inside this section.</div>
     <div id="middle-middle">
-      <p>This is a visualization of the sectors that the gaze tracker listener will differentiate between. Hover over each of the sections to see information specific to that section.</p>
+      <p id="sectors-sub">This is a visualization of the sectors that the gaze tracker listener will differentiate between.
+        Hover over each of the sections to see information specific to that section.<br><br>The next screen will
+        take you through a guided calibration process with the gaze tracker. One or two warning dialogs will appear that warn
+        of rolling back to an older version of javascript - this is fine - select `OK`.<br><br>Also, make sure to share your webcam
+        when the dialog asks. If you are not prompted to share your webcam, try refreshing the page. Click to continue to guided calibration.
+      </p>
     </div>
-    <div id="middle-right">blah blah blah blah blah blah</div>
-    <div id="bottom-left">blah blah blah blah blah blah</div>
-    <div id="bottom-middle">blah blah blah blah blah blah</div>
-    <div id="bottom-right">blah blah blah blah blah blah</div>
+    <div id="middle-right">The camera rotates <b>only to the right</b> when the user gazes inside this section.</div>
+    <div id="bottom-left">The camera rotates <b>downward and to the left</b> when the user gazes inside this section.</div>
+    <div id="bottom-middle">The camera rotates <b>only downward</b> when the user gazes inside this section.</div>
+    <div id="bottom-right">The camera rotates <b>downward and to the right</b> when the user gazes inside this section.</div>
   </div>
   </body>
   <script>

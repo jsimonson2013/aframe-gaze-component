@@ -63,6 +63,14 @@ html{
   font-size: 20px;
 }
 
+#sectors-sub{
+  display: block;
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  font-size: 20px;
+}
+
 #top-left{
   position: absolute;
   top: 0;
