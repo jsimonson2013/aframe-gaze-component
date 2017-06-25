@@ -2,7 +2,7 @@
   <head>
     <title>A-Frame Gaze Control Component - Basic</title>
     <meta name="description" content="Basic example for Gaze Control component."></meta>
-
+    <link rel="stylesheet" type="text/css" href="calibrate.css"/>
     <!-- The following must be included for any application using WebGazer.js-->
     <script src="../../node_modules/webgazer/build/webgazer.js" type="text/javascript"></script>
 
@@ -69,8 +69,8 @@
     </script>
   </head>
   <body>
-    <div>
-      <p>The red dot is your predicted gaze point on the screen. By following the blue dot with your mouse and your gaze the gaze tracker will become more calibrated. Also click on the blue dot while looking at it whenever it stops moving. By the end of this animation, the gaze tracker will be calibrated to a sufficient accuracy to enjoy the 360 experience.</p>
+    <div id="calibrate">
+      <h1 id="calibrate-sub">The red dot is your predicted gaze point on the screen. By following the blue dot with your mouse and your gaze the gaze tracker will become more calibrated. Also click on the blue dot while looking at it whenever it stops moving. By the end of this animation, the gaze tracker will be calibrated to a sufficient accuracy to enjoy the 360 experience.</h2>
     </div>
   </body>
 </html>
