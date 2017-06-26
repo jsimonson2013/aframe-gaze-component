@@ -1,6 +1,15 @@
 #calibrate{
+  position: absolute;
+  z-index: 1;
   padding-left: 350px;
   padding-right: 10%;
   padding-top: 10%;
   color: grey;
+}
+
+canvas{
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
 }
