@@ -69,23 +69,12 @@
     </script>
   </head>
   <body>
-    <canvas id="canvas"></canvas>
     <div id="calibrate">
+      <button id="button1">X</button>
+      <button id="button2">X</button>
+      <button id="button3">X</button>
+      <button id="button4">X</button>
       <h1 id="calibrate-sub">The red dot is your predicted gaze point on the screen. By following the blue dot with your mouse and your gaze the gaze tracker will become more calibrated. Also click on the blue dot while looking at it whenever it stops moving. By the end of this animation, the gaze tracker will be calibrated to a sufficient accuracy to enjoy the 360 experience.</h2>
     </div>
   </body>
-  <script>
-  var canvas = document.getElementById('canvas')
-  var context = canvas.getContext('2d')
-
-  context.fillStyle = 'blue'
-  context.fillRect(100, 100, 10, 10)
-
-  var count
-  for (count = 0; count < 10; count++){
-    setTimeout(function(){
-      // context.clearRect(10, 10, 100, 100)
-    }, 5000)
-  }
-  </script>
 </html>
