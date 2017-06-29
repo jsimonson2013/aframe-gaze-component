@@ -10,22 +10,62 @@
   color: grey;
 }
 
+#button0{
+  position: relative;
+  top: 100px;
+  left: 350px;
+}
+
 #button1{
   position: relative;
-  left: 350px;
+  top: 300px;
+  left: 700px;
 }
 
 #button2{
   position: relative;
-  left: 400px;
+  top: 50px;
+  left: 950px;
 }
 
 #button3{
   position: relative;
-  left: 450px;
+  top: 350px;
+  left: 100px;
 }
 
 #button4{
   position: relative;
-  left: 500px;
+  top: 500px;
+  left: 10px;
+}
+
+#button5{
+  position: relative;
+  top: 600px;
+  left: 100px;
+}
+
+#button6{
+  position: relative;
+  top: 600px;
+  left: 400px;
+}
+
+#button7{
+  position: relative;
+  top: 200px;
+  left: 850px;
+}
+
+#button8{
+  position: relative;
+  top: 350px;
+  left: 800px;
+}
+
+#button9{
+  position: relative;
+  top: 500px;
+  left: 800px;
 }
