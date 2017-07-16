@@ -40,7 +40,7 @@
               .setGazeListener(function(data, clock) {
                 sceneEl = document.getElementById('3DScene');
                 canvasEl = sceneEl && sceneEl.canvas;
-              
+
                 if(data != null && canvasEl != null){
                    event.detail.x = data.x;
                    event.detail.y = data.y;
@@ -100,7 +100,7 @@
   </head>
   <body>
     <div id="calibrate">
-      <h1 id="calibrate-sub">The red dot is your predicted gaze point on the screen. The gaze prediction will become more accurate as you look at the mouse while clicking and moving the mouse. This is how the gaze tracker calibrates. When you think that the predicted point is close to your actual on-screen gaze, click the button below to continue.</h1>
+      <h1 id="calibrate-sub">The red dot is your predicted gaze point on the screen. The gaze prediction will become more accurate as you look at the mouse while clicking and moving the mouse. This is how the gaze tracker calibrates. After clicking several times on this screen, and when you think that the predicted point is close to your actual on-screen gaze, click the button below to continue.</h1>
       <button onclick="showPhoto()">Continue</button>
     </div>
   </body>

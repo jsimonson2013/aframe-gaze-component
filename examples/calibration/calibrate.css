@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+#calibrate:hover{
+  cursor: crosshair;
+}
+
 #calibrate-sub{
   padding-left: 350px;
   padding-right: 10%;
@@ -14,4 +18,8 @@ button{
   font-size: 16;
   color: grey;
   margin-left: 500px;
+}
+
+a-scene:hover{
+  cursor: crosshair;
 }
