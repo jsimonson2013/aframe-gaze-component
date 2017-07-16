@@ -18,7 +18,6 @@ Usage requires Node.JS as well as Firefox.
 
 A live example can be found [here](http://jacobsimonson.me:7000).
 
-<!--
 For [A-Frame](https://aframe.io).
 
 ### API
@@ -57,7 +56,6 @@ version of A-Frame:
 angle install aframe-gaze-control-component
 ```
 -->
-<!--
 #### npm
 
 Install via npm:
@@ -72,4 +70,3 @@ Then require and use.
 require('aframe');
 require('aframe-gaze-control-component');
 ```
--->

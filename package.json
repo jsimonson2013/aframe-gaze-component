@@ -49,8 +49,7 @@
       "THREE"
     ],
     "ignore": [
-      "examples/build.js",
-      "dist/**"
+      "examples/build.js"
     ]
   }
 }

@@ -201,53 +201,49 @@
 	   onGazeMove: function(event) {
 	     var width = window.innerWidth;
 	     var height = window.innerHeight;
+
+	     // sectors determine camera movement
 	     var sector_height = height/4;
 	     var sector_width = width/6;
-	     var movement_speed = 25;
 
-	     if (!this.data.enabled) { return; }
+	     // gaze location
+	     var x = event.detail.x
+	     var y = event.detail.y
 
-	     if (event.detail.x > 0 && event.detail.x < sector_width && event.detail.y > 0 && event.detail.y < sector_height){
-	       var movementX = -movement_speed;
-	       var movementY = -movement_speed;
+	     // unit of movement
+	     var dist = 25;
+
+	     // gaze listener has not initialized
+	     if (!this.data.enabled){
+	       return;
 	     }
-	     else if (event.detail.x > sector_width && event.detail.x < width - sector_width && event.detail.y > 0 && event.detail.y < sector_height){
-	       var movementX = 0;
-	       var movementY = -movement_speed;
+
+	     // gaze is outside window
+	     if (x > width || y > height || x < 0 || y < 0){
+	       return;
 	     }
-	     else if (event.detail.x > width - sector_width && event.detail.x < width && event.detail.y > 0 && event.detail.y < sector_height){
-	       var movementX = movement_speed;
-	       var movementY = -movement_speed;
+
+	     var moveX = 0, moveY = 0;
+
+	     // determine movement in the x-direction
+	     if (x < sector_width){
+	       moveX = -dist; // move left
 	     }
-	     else if (event.detail.x > 0 && event.detail.x < sector_width && event.detail.y > sector_height && event.detail.y < height - sector_height){
-	       var movementX = -movement_speed;
-	       var movementY = 0;
+	     else if (x > width - sector_width){
+	       moveX = dist; // move right
 	     }
-	     else if (event.detail.x > width - sector_width && event.detail.x < width && event.detail.y > sector_height && event.detail.y < height - sector_height){
-	       var movementX = movement_speed;
-	       var movementY = 0;
+
+	     // determine movement in the y-direction
+	     if (y < sector_height){
+	       moveY = -dist; // move down
 	     }
-	     else if (event.detail.x > 0 && event.detail.x < sector_width && event.detail.y > height - sector_height && event.detail.y < height){
-	       var movementX = -movement_speed
-	       var movementY = movement_speed;
-	     }
-	     else if (event.detail.x > sector_width && event.detail.x < width - sector_width && event.detail.y > height - sector_height && event.detail.y < height){
-	       var movementX = 0;
-	       var movementY = movement_speed;
-	     }
-	     else if (event.detail.x > width - sector_width && event.detail.x < width && event.detail.y > height - sector_height && event.detail.y < height){
-	       var movementX = movement_speed;
-	       var movementY = movement_speed;
-	     }
-	     else{
-	       var movementX = 0;
-	       var movementY = 0;
+	     else if (y > height - sector_height){
+	       moveY = dist; // move up
 	     }
 
 	     // From onMouseMove()
-	     this.previousGazeEvent = event;
-	     this.yawObject.rotation.y -= movementX * 0.002;
-	     this.pitchObject.rotation.x -= movementY * 0.002;
+	     this.yawObject.rotation.y -= moveX * 0.002;
+	     this.pitchObject.rotation.x -= moveY * 0.002;
 	     this.pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, this.pitchObject.rotation.x));
 	   }
 	 });
