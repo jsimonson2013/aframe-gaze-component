@@ -5,6 +5,20 @@
 
 Look control that interprets gaze data as input.
 
+### Usage
+
+Usage requires Node.JS as well as Firefox.
+
+* clone the repository: `git clone https://github.com/jsimonson2013/aframe-gaze-component.git`
+* navigate to the root: `cd aframe-gaze-component`
+* install packages: `npm install`
+* run the application: `npm run start`
+
+### Example
+
+A live example can be found [here](http://jacobsimonson.me:7000).
+
+<!--
 For [A-Frame](https://aframe.io).
 
 ### API
@@ -43,7 +57,7 @@ version of A-Frame:
 angle install aframe-gaze-control-component
 ```
 -->
-
+<!--
 #### npm
 
 Install via npm:
@@ -58,3 +72,4 @@ Then require and use.
 require('aframe');
 require('aframe-gaze-control-component');
 ```
+-->

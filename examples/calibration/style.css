@@ -1,0 +1,203 @@
+html{
+  background-color: #9e9e9e;
+  opacity: 0.5;
+}
+
+#welcome{
+  width: 100%;
+  height: 100%;
+}
+
+#welcome:hover{
+  cursor: none;
+}
+
+#info{
+  width: 100%;
+  height: 100%;
+}
+
+#info:hover{
+  cursor: none;
+}
+
+#sectors{
+  width: 100%;
+  height: 100%;
+}
+
+#sectors:hover{
+  cursor: crosshair;
+}
+
+#welcome-heading{
+  display: block;
+  position: absolute;
+  left: 10%;
+  top: 25%;
+  font-size: 60px;
+}
+
+#info-heading{
+  display: block;
+  position: absolute;
+  left: 10%;
+  top: 25%;
+  font-size: 60px;
+}
+
+#welcome-sub{
+  display: block;
+  position: absolute;
+  left: 15%;
+  top: 50%;
+  font-size: 40px;
+}
+
+#info-sub{
+  display: block;
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  top: 50%;
+  font-size: 20px;
+}
+
+#sectors-sub{
+  display: block;
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  font-size: 20px;
+}
+
+#top-left{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24%;
+  width: 16%;
+  background-color: white;
+  border: solid black;
+  color: white;
+}
+
+#top-left:hover{
+  color: black;
+}
+
+#top-middle{
+  position: absolute;
+  top: 0;
+  left: 16.5%;
+  height: 24%;
+  width: 66.5%;
+  background-color: lightgrey;
+  border: solid black;
+  color: lightgrey;
+}
+
+#top-middle:hover{
+  color: black;
+}
+
+#top-right{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 24%;
+  width: 16%;
+  background-color: grey;
+  border: solid black;
+  color: grey;
+}
+
+#top-right:hover{
+  color: black;
+}
+
+#middle-left{
+  position: absolute;
+  top: 25.5%;
+  left: 0;
+  height: 48.5%;
+  width: 16%;
+  background-color: lightgrey;
+  border: solid black;
+  color: lightgrey;
+}
+
+#middle-left:hover{
+  color: black;
+}
+
+#middle-middle{
+  position: absolute;
+  top: 25.5%;
+  left: 16.5%;
+  height: 48.5%;
+  width: 66.5%;
+  background-color: grey;
+  border: solid black;
+  color: black;
+}
+
+#middle-right{
+  position: absolute;
+  top: 25.5%;
+  right: 0;
+  height: 48.5%;
+  width: 16%;
+  background-color: white;
+  border: solid black;
+  color: white;
+}
+
+#middle-right:hover{
+  color: black;
+}
+
+#bottom-left{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 24%;
+  width: 16%;
+  background-color: grey;
+  border: solid black;
+  color: grey;
+}
+
+#bottom-left:hover{
+  color: black;
+}
+
+#bottom-middle{
+  position: absolute;
+  bottom: 0;
+  left: 16.5%;
+  height: 24%;
+  width: 66.5%;
+  background-color: white;
+  border: solid black;
+  color: white;
+}
+
+#bottom-middle:hover{
+  color: black;
+}
+
+#bottom-right{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 24%;
+  width: 16%;
+  background-color: lightgrey;
+  border: solid black;
+  color: lightgrey;
+}
+
+#bottom-right:hover{
+  color: black;
+}

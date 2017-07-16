@@ -66,14 +66,23 @@
 	   init: function () {
 	     this.previousPosition = new THREE.Vector3();
 	     this.deltaPosition = new THREE.Vector3();
-	     this.setupMouseControls();
-	     this.setupHMDControls();
-	     this.bindMethods();
+
+	     // From setupMouseControls
+	     this.pitchObject = new THREE.Object3D();
+	     this.yawObject = new THREE.Object3D();
+	     this.yawObject.position.y = 10;
+	     this.yawObject.add(this.pitchObject);
+
+	     // From setupHMDControls
+	     this.dolly = new THREE.Object3D();
+	     this.euler = new THREE.Euler();
+	     this.zeroQuaternion = new THREE.Quaternion();
+
+	     this.onGazeMove = this.onGazeMove.bind(this);
 	   },
 
 	   update: function () {
 	     if (!this.data.enabled) { return; }
-	     this.controls.update();
 	     this.updateOrientation();
 	     this.updatePosition();
 	   },
@@ -95,32 +104,6 @@
 	     this.pause();
 	   },
 
-	   bindMethods: function () {
-	     this.onMouseDown = this.onMouseDown.bind(this);
-	     this.onGazeMove = this.onGazeMove.bind(this);
-	     this.onMouseMove = this.onMouseMove.bind(this);
-	     this.releaseMouse = this.releaseMouse.bind(this);
-	     this.onTouchStart = this.onTouchStart.bind(this);
-	     this.onTouchMove = this.onTouchMove.bind(this);
-	     this.onTouchEnd = this.onTouchEnd.bind(this);
-	   },
-
-	   setupMouseControls: function () {
-	     // The canvas where the scene is painted
-	     this.mouseDown = false;
-	     this.pitchObject = new THREE.Object3D();
-	     this.yawObject = new THREE.Object3D();
-	     this.yawObject.position.y = 10;
-	     this.yawObject.add(this.pitchObject);
-	   },
-
-	   setupHMDControls: function () {
-	     this.dolly = new THREE.Object3D();
-	     this.euler = new THREE.Euler();
-	     this.controls = new THREE.VRControls(this.dolly);
-	     this.zeroQuaternion = new THREE.Quaternion();
-	   },
-
 	   addEventListeners: function () {
 	     var sceneEl = this.el.sceneEl;
 	     var canvasEl = sceneEl.canvas;
@@ -131,18 +114,6 @@
 	       return;
 	     }
 
-	     // Mouse Events
-	     canvasEl.addEventListener('mousedown', this.onMouseDown, false);
-	     canvasEl.addEventListener('mousemove', this.onMouseMove, false);
-	     canvasEl.addEventListener('mouseup', this.releaseMouse, false);
-	     canvasEl.addEventListener('mouseout', this.releaseMouse, false);
-
-	     // Touch events
-	     canvasEl.addEventListener('touchstart', this.onTouchStart);
-	     canvasEl.addEventListener('touchmove', this.onTouchMove);
-	     canvasEl.addEventListener('touchend', this.onTouchEnd);
-
-	     // Gaze events
 	     canvasEl.addEventListener('gazemove', this.onGazeMove);
 	   },
 
@@ -151,18 +122,6 @@
 	     var canvasEl = sceneEl && sceneEl.canvas;
 	     if (!canvasEl) { return; }
 
-	     // Mouse Events
-	     canvasEl.removeEventListener('mousedown', this.onMouseDown);
-	     canvasEl.removeEventListener('mousemove', this.onMouseMove);
-	     canvasEl.removeEventListener('mouseup', this.releaseMouse);
-	     canvasEl.removeEventListener('mouseout', this.releaseMouse);
-
-	     // Touch events
-	     canvasEl.removeEventListener('touchstart', this.onTouchStart);
-	     canvasEl.removeEventListener('touchmove', this.onTouchMove);
-	     canvasEl.removeEventListener('touchend', this.onTouchEnd);
-
-	     // Gaze events
 	     canvasEl.removeEventListener('gazemove', this.onGazeMove);
 	   },
 
@@ -239,130 +198,57 @@
 	     this.zeroQuaternion.setFromEuler(euler);
 	   },
 
-	   // Listener for gaze events that manipulates the scene based on gaze
-	   // location in window. Window is broken into 9 sectors in a 3x3 grid.
-	   // The center sector is the largest because the focal area consumes
-	   // most of the screen.
 	   onGazeMove: function(event) {
-	     // Base sector size and movements on the size of the window
 	     var width = window.innerWidth;
 	     var height = window.innerHeight;
+	     var sector_height = height/4;
+	     var sector_width = width/6;
+	     var movement_speed = 25;
 
-	     // Because of landscape orientation and focal area, a larger portion
-	     // of the height contributes to a sector size than width.
-	     var sector_height = height/4; // height dimension of sector
-	     var sector_width = width/6; // width dimension of sector
-
-	     // Speed is somewhat arbitrary but obtained based on what felt
-	     // comfortable in testing.
-	     var movement_speed = 25; // speed of panning
-
-	     // Adapted from onMouseMove()
-	     var pitchObject = this.pitchObject;
-	     var yawObject = this.yawObject;
-	     var previousGazeEvent = this.previousGazeEvent;
 	     if (!this.data.enabled) { return; }
 
-	     // Bottom Left
 	     if (event.detail.x > 0 && event.detail.x < sector_width && event.detail.y > 0 && event.detail.y < sector_height){
 	       var movementX = -movement_speed;
 	       var movementY = -movement_speed;
-	     } // Bottom Center
+	     }
 	     else if (event.detail.x > sector_width && event.detail.x < width - sector_width && event.detail.y > 0 && event.detail.y < sector_height){
 	       var movementX = 0;
 	       var movementY = -movement_speed;
-	     } // Bottom Right
+	     }
 	     else if (event.detail.x > width - sector_width && event.detail.x < width && event.detail.y > 0 && event.detail.y < sector_height){
 	       var movementX = movement_speed;
 	       var movementY = -movement_speed;
-	     } // Middle Left
+	     }
 	     else if (event.detail.x > 0 && event.detail.x < sector_width && event.detail.y > sector_height && event.detail.y < height - sector_height){
 	       var movementX = -movement_speed;
 	       var movementY = 0;
-	     } // Middle Right
+	     }
 	     else if (event.detail.x > width - sector_width && event.detail.x < width && event.detail.y > sector_height && event.detail.y < height - sector_height){
 	       var movementX = movement_speed;
 	       var movementY = 0;
-	     } // Top Left
+	     }
 	     else if (event.detail.x > 0 && event.detail.x < sector_width && event.detail.y > height - sector_height && event.detail.y < height){
 	       var movementX = -movement_speed
 	       var movementY = movement_speed;
-	     } // Top Center
+	     }
 	     else if (event.detail.x > sector_width && event.detail.x < width - sector_width && event.detail.y > height - sector_height && event.detail.y < height){
 	       var movementX = 0;
 	       var movementY = movement_speed;
-	     } // Top Right
+	     }
 	     else if (event.detail.x > width - sector_width && event.detail.x < width && event.detail.y > height - sector_height && event.detail.y < height){
 	       var movementX = movement_speed;
 	       var movementY = movement_speed;
-	     } // User is looking at center or not at another sector
+	     }
 	     else{
 	       var movementX = 0;
 	       var movementY = 0;
 	     }
 
-	     // Adapted from onMouseMove()
+	     // From onMouseMove()
 	     this.previousGazeEvent = event;
-	     yawObject.rotation.y -= movementX * 0.002;
-	     pitchObject.rotation.x -= movementY * 0.002;
-	     pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, pitchObject.rotation.x));
-	   },
-
-	   onMouseMove: function (event) {
-	     var pitchObject = this.pitchObject;
-	     var yawObject = this.yawObject;
-	     var previousMouseEvent = this.previousMouseEvent;
-
-	     if (!this.mouseDown || !this.data.enabled) { return; }
-
-	     var movementX = event.movementX || event.mozMovementX;
-	     var movementY = event.movementY || event.mozMovementY;
-
-	     if (movementX === undefined || movementY === undefined) {
-	       movementX = event.screenX - previousMouseEvent.screenX;
-	       movementY = event.screenY - previousMouseEvent.screenY;
-	     }
-	     this.previousMouseEvent = event;
-
-	     yawObject.rotation.y -= movementX * 0.002;
-	     pitchObject.rotation.x -= movementY * 0.002;
-	     pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, pitchObject.rotation.x));
-	   },
-
-	   onMouseDown: function (event) {
-	     this.mouseDown = true;
-	     this.previousMouseEvent = event;
-	   },
-
-	   releaseMouse: function () {
-	     this.mouseDown = false;
-	   },
-
-	   onTouchStart: function (e) {
-	     if (e.touches.length !== 1) { return; }
-	     this.touchStart = {
-	       x: e.touches[0].pageX,
-	       y: e.touches[0].pageY
-	     };
-	     this.touchStarted = true;
-	   },
-
-	   onTouchMove: function (e) {
-	     var deltaY;
-	     var yawObject = this.yawObject;
-	     if (!this.touchStarted) { return; }
-	     deltaY = 2 * Math.PI * (e.touches[0].pageX - this.touchStart.x) /
-	             this.el.sceneEl.canvas.clientWidth;
-	     // Limits touch orientaion to to yaw (y axis)
-	     yawObject.rotation.y -= deltaY * 0.5;
-	     this.touchStart = {
-	       x: e.touches[0].pageX,
-	       y: e.touches[0].pageY
-	     };
-	   },
-
-	   onTouchEnd: function () {
-	     this.touchStarted = false;
+	     this.yawObject.rotation.y -= movementX * 0.002;
+	     this.pitchObject.rotation.x -= movementY * 0.002;
+	     this.pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, this.pitchObject.rotation.x));
 	   }
 	 });
 

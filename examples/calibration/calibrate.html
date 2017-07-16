@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <title>A-Frame Gaze Control Component - Basic</title>
+    <meta name="description" content="Basic example for Gaze Control component."></meta>
+    <link rel="stylesheet" type="text/css" href="calibrate.css"/>
+    <!-- The following must be included for any application using WebGazer.js-->
+    <script src="../../node_modules/webgazer/build/webgazer.js" type="text/javascript"></script>
+
+    <script>
+      window.onload = function() {
+          webgazer.setRegression('ridge')
+              .setTracker('clmtrackr')
+              .setGazeListener(function(data, clock) {
+                if (data == null) {
+                        return;
+                    }
+                    var xprediction = data.x; //these x coordinates are relative to the viewport
+                    var yprediction = data.y; //these y coordinates are relative to the viewport
+              })
+              .begin()
+              .showPredictionPoints(true);
+          var width = 320;
+          var height = 240;
+          var topDist = '0px';
+          var leftDist = '0px';
+          var setup = function() {
+              var video = document.getElementById('webgazerVideoFeed');
+              var scene = document.getElementById('3DScene');
+              video.style.display = 'block';
+              video.style.position = 'absolute';
+              video.style.top = topDist;
+              video.style.left = leftDist;
+              video.width = width;
+              video.height = height;
+              video.style.margin = '0px';
+              webgazer.params.imgWidth = width;
+              webgazer.params.imgHeight = height;
+              var overlay = document.createElement('canvas');
+              overlay.id = 'overlay';
+              overlay.style.position = 'absolute';
+              overlay.width = width;
+              overlay.height = height;
+              overlay.style.top = topDist;
+              overlay.style.left = leftDist;
+              overlay.style.margin = '0px';
+              document.body.appendChild(overlay);
+              var cl = webgazer.getTracker().clm;
+              function drawLoop() {
+                  requestAnimFrame(drawLoop);
+                  overlay.getContext('2d').clearRect(0,0,width,height);
+                  if (cl.getCurrentPosition()) {
+                      cl.draw(overlay);
+                  }
+              }
+              drawLoop();
+          };
+          function checkIfReady() {
+              if (webgazer.isReady()) {
+                  setup();
+              } else {
+                  setTimeout(checkIfReady, 100);
+              }
+          }
+          setTimeout(checkIfReady,100);
+      };
+      window.onbeforeunload = function() {
+          window.localStorage.clear();
+      }
+    </script>
+  </head>
+  <body>
+    <div id="calibrate">
+      <button id="button0">X</button>
+      <button id="button1">X</button>
+      <button id="button2">X</button>
+      <button id="button3">X</button>
+      <button id="button4">X</button>
+      <button id="button5">X</button>
+      <button id="button6">X</button>
+      <button id="button7">X</button>
+      <button id="button8">X</button>
+      <button id="button9">X</button>
+      <h1 id="calibrate-sub">The red dot is your predicted gaze point on the screen. By following the blue dot with your mouse and your gaze the gaze tracker will become more calibrated. Also click on the blue dot while looking at it whenever it stops moving. By the end of this animation, the gaze tracker will be calibrated to a sufficient accuracy to enjoy the 360 experience.</h2>
+    </div>
+  </body>
+</html>

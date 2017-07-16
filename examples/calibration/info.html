@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>A-Frame Gaze Control Component - Basic</title>
+    <meta name="description" content="Basic example for Gaze Control component."></meta>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="../../dist/aframe-gaze-control-component.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+  <div id="info" onclick="navigateToSectors()">
+    <h1 id="info-heading">How it works</h1>
+    <p id="info-sub">This component uses an eye tracker to infer the user's gaze location on their screen. The gaze location is then tested to determine if the camera must change. If the user's gaze is not inferred to be in the middle section of the screen, the camera rotates to accomodate. This aims to create a more natural desktop interaction in A-Frame. Click to see the breakdown of screen sections on the next page.</p>
+  </div>
+  </body>
+  <script>
+    navigateToSectors = function(){
+      window.location = "./sectors.html"
+    }
+  </script>
+</html>

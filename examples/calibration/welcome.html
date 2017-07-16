@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>A-Frame Gaze Control Component - Basic</title>
+    <meta name="description" content="Basic example for Gaze Control component."></meta>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="../../dist/aframe-gaze-control-component.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+  <div id="welcome" onclick="navigateToInfo()">
+    <h1 id="welcome-heading">Welcome to Desktop VR.</h1>
+    <h1 id="welcome-sub">Click to continue.</h1>
+  </div>
+  </body>
+  <script>
+    navigateToInfo = function(){
+      document.getElementById('welcome').setAttribute('cursor', 'grabbing')
+      window.location = "./info.html"
+    }
+  </script>
+</html>
