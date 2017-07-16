@@ -177,15 +177,14 @@ AFRAME.registerComponent('gaze-control', {
        return;
      }
 
+     var moveX = 0, moveY = 0;
+
      // determine movement in the x-direction
      if (x < sector_width){
        moveX = -dist; // move left
      }
      else if (x > width - sector_width){
        moveX = dist; // move right
-     }
-     else{
-       moveX = 0; // no movement
      }
 
      // determine movement in the y-direction
@@ -194,9 +193,6 @@ AFRAME.registerComponent('gaze-control', {
      }
      else if (y > height - sector_height){
        moveY = dist; // move up
-     }
-     else{
-       moveY = 0; // no movement
      }
 
      // From onMouseMove()
