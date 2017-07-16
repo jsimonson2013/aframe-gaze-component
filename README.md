@@ -14,17 +14,31 @@ Usage requires Node.JS as well as Firefox.
 * install packages: `npm install`
 * run the application: `npm run start`
 
-### Example
-
-A live example can be found [here](http://jacobsimonson.me:7000).
-
 For [A-Frame](https://aframe.io).
 
 ### API
 
-| Property | Description | Default Value |
-| -------- | ----------- | ------------- |
-|          |             |               |
+Create an event
+```
+var event = new CustomEvent('gazemove', {
+  detail: {
+    'x': gaze_x,
+    'y': gaze_y,
+  },
+  bubbles: true,
+  cancelable: true
+});
+event.initEvent('gazemove', true, true);
+```
+
+Then dispatch to `sceneEl.canvas` every time the gaze moves
+```
+if(data != null){
+  event.detail.x = data.x;
+  event.detail.y = data.y;
+  canvasEl.dispatchEvent(event);
+}
+```
 
 ### Installation
 
@@ -41,7 +55,7 @@ Install and use by directly including the [browser files](dist):
 
 <body>
   <a-scene>
-    <a-entity gaze-control="foo: bar"></a-entity>
+    <a-entity gaze-control=""></a-entity>
   </a-scene>
 </body>
 ```
@@ -70,3 +84,7 @@ Then require and use.
 require('aframe');
 require('aframe-gaze-control-component');
 ```
+
+### Example
+
+A live example can be found [here](http://jacobsimonson.me:7000).
