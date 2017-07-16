@@ -156,56 +156,52 @@ AFRAME.registerComponent('gaze-control', {
      var width = window.innerWidth;
      var height = window.innerHeight;
 
+     // sectors determine camera movement
      var sector_height = height/4;
      var sector_width = width/6;
 
+     // gaze location
      var x = event.detail.x
      var y = event.detail.y
 
-     var movement_speed = 25;
+     // unit of movement
+     var dist = 25;
 
-     if (!this.data.enabled) { return; }
+     // gaze listener has not initialized
+     if (!this.data.enabled){
+       return;
+     }
 
-     if (x > 0 && x < sector_width && y > 0 && y < sector_height){
-       var movementX = -movement_speed;
-       var movementY = -movement_speed;
+     // gaze is outside window
+     if (x > width || y > height || x < 0 || y < 0){
+       return;
      }
-     else if (x > sector_width && x < width - sector_width && y > 0 && y < sector_height){
-       var movementX = 0;
-       var movementY = -movement_speed;
+
+     // determine movement in the x-direction
+     if (x < sector_width){
+       moveX = -dist; // move left
      }
-     else if (x > width - sector_width && x < width && y > 0 && y < sector_height){
-       var movementX = movement_speed;
-       var movementY = -movement_speed;
-     }
-     else if (x > 0 && x < sector_width && y > sector_height && y < height - sector_height){
-       var movementX = -movement_speed;
-       var movementY = 0;
-     }
-     else if (x > width - sector_width && x < width && y > sector_height && y < height - sector_height){
-       var movementX = movement_speed;
-       var movementY = 0;
-     }
-     else if (x > 0 && x < sector_width && y > height - sector_height && y < height){
-       var movementX = -movement_speed
-       var movementY = movement_speed;
-     }
-     else if (x > sector_width && x < width - sector_width && y > height - sector_height && y < height){
-       var movementX = 0;
-       var movementY = movement_speed;
-     }
-     else if (x > width - sector_width && x < width && y > height - sector_height && y < height){
-       var movementX = movement_speed;
-       var movementY = movement_speed;
+     else if (x > width - sector_width){
+       moveX = dist; // move right
      }
      else{
-       var movementX = 0;
-       var movementY = 0;
+       moveX = 0; // no movement
+     }
+
+     // determine movement in the y-direction
+     if (y < sector_height){
+       moveY = -dist; // move down
+     }
+     else if (y > height - sector_height){
+       moveY = dist; // move up
+     }
+     else{
+       moveY = 0; // no movement
      }
 
      // From onMouseMove()
-     this.yawObject.rotation.y -= movementX * 0.002;
-     this.pitchObject.rotation.x -= movementY * 0.002;
+     this.yawObject.rotation.y -= moveX * 0.002;
+     this.pitchObject.rotation.x -= moveY * 0.002;
      this.pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, this.pitchObject.rotation.x));
    }
  });
