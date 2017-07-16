@@ -3,10 +3,9 @@ module.exports = function (config) {
   config.set({
     basePath: '../',
     browserify: {
-      debug: true,
       paths: ['./']
     },
-    browsers: ['Firefox', 'Chrome'],
+    browsers: ['Firefox'],
     client: {
       captureConsole: true,
       mocha: {ui: 'tdd'}
@@ -14,12 +13,10 @@ module.exports = function (config) {
     envPreprocessor: ['TEST_ENV'],
     files: [
       // Define test files.
-      {pattern: 'tests/**/*.test.js'},
-      // Serve test assets.
-      {pattern: 'tests/assets/**/*', included: false, served: true}
+      {pattern: './tests/**/*.test.js'}
     ],
     frameworks: ['mocha', 'sinon-chai', 'chai-shallow-deep-equal', 'browserify'],
-    preprocessors: {'tests/**/*.js': ['browserify', 'env']},
+    preprocessors: {'./tests/**/*.js': ['browserify']},
     reporters: ['mocha']
   });
 };

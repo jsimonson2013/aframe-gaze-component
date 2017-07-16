@@ -155,41 +155,46 @@ AFRAME.registerComponent('gaze-control', {
    onGazeMove: function(event) {
      var width = window.innerWidth;
      var height = window.innerHeight;
+
      var sector_height = height/4;
      var sector_width = width/6;
+
+     var x = event.detail.x
+     var y = event.detail.y
+
      var movement_speed = 25;
 
      if (!this.data.enabled) { return; }
 
-     if (event.detail.x > 0 && event.detail.x < sector_width && event.detail.y > 0 && event.detail.y < sector_height){
+     if (x > 0 && x < sector_width && y > 0 && y < sector_height){
        var movementX = -movement_speed;
        var movementY = -movement_speed;
      }
-     else if (event.detail.x > sector_width && event.detail.x < width - sector_width && event.detail.y > 0 && event.detail.y < sector_height){
+     else if (x > sector_width && x < width - sector_width && y > 0 && y < sector_height){
        var movementX = 0;
        var movementY = -movement_speed;
      }
-     else if (event.detail.x > width - sector_width && event.detail.x < width && event.detail.y > 0 && event.detail.y < sector_height){
+     else if (x > width - sector_width && x < width && y > 0 && y < sector_height){
        var movementX = movement_speed;
        var movementY = -movement_speed;
      }
-     else if (event.detail.x > 0 && event.detail.x < sector_width && event.detail.y > sector_height && event.detail.y < height - sector_height){
+     else if (x > 0 && x < sector_width && y > sector_height && y < height - sector_height){
        var movementX = -movement_speed;
        var movementY = 0;
      }
-     else if (event.detail.x > width - sector_width && event.detail.x < width && event.detail.y > sector_height && event.detail.y < height - sector_height){
+     else if (x > width - sector_width && x < width && y > sector_height && y < height - sector_height){
        var movementX = movement_speed;
        var movementY = 0;
      }
-     else if (event.detail.x > 0 && event.detail.x < sector_width && event.detail.y > height - sector_height && event.detail.y < height){
+     else if (x > 0 && x < sector_width && y > height - sector_height && y < height){
        var movementX = -movement_speed
        var movementY = movement_speed;
      }
-     else if (event.detail.x > sector_width && event.detail.x < width - sector_width && event.detail.y > height - sector_height && event.detail.y < height){
+     else if (x > sector_width && x < width - sector_width && y > height - sector_height && y < height){
        var movementX = 0;
        var movementY = movement_speed;
      }
-     else if (event.detail.x > width - sector_width && event.detail.x < width && event.detail.y > height - sector_height && event.detail.y < height){
+     else if (x > width - sector_width && x < width && y > height - sector_height && y < height){
        var movementX = movement_speed;
        var movementY = movement_speed;
      }
@@ -199,7 +204,6 @@ AFRAME.registerComponent('gaze-control', {
      }
 
      // From onMouseMove()
-     this.previousGazeEvent = event;
      this.yawObject.rotation.y -= movementX * 0.002;
      this.pitchObject.rotation.x -= movementY * 0.002;
      this.pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, this.pitchObject.rotation.x));
