@@ -3,11 +3,39 @@
     <title>A-Frame Gaze Control Component - Basic</title>
     <meta name="description" content="Basic example for Gaze Control component."></meta>
     <link rel="stylesheet" type="text/css" href="calibrate.css"/>
+
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="../../dist/aframe-gaze-control-component.min.js"></script>
+
     <!-- The following must be included for any application using WebGazer.js-->
     <script src="../../node_modules/webgazer/build/webgazer.js" type="text/javascript"></script>
 
     <script>
+      showPhoto = function(){
+        document.getElementById('calibrate').innerHTML = '<a-scene id="3DScene"> <a-sky src="../360-image/image.jpg" rotation="0 -130 0"></a-sky> <a-entity camera="userHeight: 1.6" gaze-control=""></a-entity> </a-scene>';
+      }
+    </script>
+
+    <script>
       window.onload = function() {
+          // Initialize gaze coordinates and store view elements
+          var gaze_x = 0;
+          var gaze_y = 0;
+          var sceneEl = document.querySelector('a-scene');
+          var canvasEl = sceneEl && sceneEl.canvas;
+
+          // Custom event to update gaze point and trigger handler in
+          // gaze controls. Holds x- and y-coordinate of gaze prediction.
+          var event = new CustomEvent('gazemove', {
+            detail: {
+              'x': gaze_x,
+              'y': gaze_y,
+            },
+            bubbles: true,
+            cancelable: true
+          });
+          event.initEvent('gazemove', true, true);
+
           webgazer.setRegression('ridge')
               .setTracker('clmtrackr')
               .setGazeListener(function(data, clock) {
@@ -70,17 +98,8 @@
   </head>
   <body>
     <div id="calibrate">
-      <button id="button0">X</button>
-      <button id="button1">X</button>
-      <button id="button2">X</button>
-      <button id="button3">X</button>
-      <button id="button4">X</button>
-      <button id="button5">X</button>
-      <button id="button6">X</button>
-      <button id="button7">X</button>
-      <button id="button8">X</button>
-      <button id="button9">X</button>
-      <h1 id="calibrate-sub">The red dot is your predicted gaze point on the screen. By following the blue dot with your mouse and your gaze the gaze tracker will become more calibrated. Also click on the blue dot while looking at it whenever it stops moving. By the end of this animation, the gaze tracker will be calibrated to a sufficient accuracy to enjoy the 360 experience.</h2>
+      <h1 id="calibrate-sub">The red dot is your predicted gaze point on the screen. The gaze prediction will become more accurate as you look at the mouse while clicking and moving the mouse. This is how the gaze tracker calibrates. When you think that the predicted point is close to your actual on-screen gaze, click the button below to continue.</h1>
+      <button onclick="showPhoto()">Continue</button>
     </div>
   </body>
 </html>
