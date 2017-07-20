@@ -5,7 +5,7 @@
   "main": "index.js",
   "cdn": "dist/aframe-gaze-control-component.min.js",
   "scripts": {
-    "dev": "budo index.js:dist/aframe-gaze-control-component.min.js --port 7000 --live --open",
+    "dev": "budo index.js:dist/aframe-gaze-control-component.min.js --port 7000 --ssl --live --open",
     "dist": "webpack index.js dist/aframe-gaze-control-component.js && webpack -p index.js dist/aframe-gaze-control-component.min.js",
     "lint": "semistandard -v | snazzy",
     "prepublish": "npm run dist",

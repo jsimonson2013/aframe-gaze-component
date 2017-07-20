@@ -3,7 +3,11 @@
 [![Version](http://img.shields.io/npm/v/aframe-gaze-control-component.svg?style=flat-square)](https://npmjs.org/package/aframe-gaze-control-component)
 [![License](http://img.shields.io/npm/l/aframe-gaze-control-component.svg?style=flat-square)](https://npmjs.org/package/aframe-gaze-control-component)
 
-Look control that interprets gaze data as input.
+Look control that interprets gaze data as input then rotates the camera.
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=-7vhhY3Hsoc
+" target="_blank"><img src="http://img.youtube.com/vi/-7vhhY3Hsoc/0.jpg"
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 ### Usage
 
@@ -38,6 +42,14 @@ if(data != null){
   event.detail.y = data.y;
   canvasEl.dispatchEvent(event);
 }
+```
+
+And add as active camera to scene
+```
+<a-scene>
+  <a-sky src="image.jpg"></a-sky>
+  <a-entity camera="userHeight: 1.6" gaze-control=""></a-entity>
+</a-scene>
 ```
 
 ### Installation
