@@ -100,3 +100,7 @@ require('aframe-gaze-control-component');
 ### Example
 
 A live example can be found [here](http://jacobsimonson.me:7000).
+
+### License
+
+My code is under an [MIT License](https://github.com/jsimonson2013/aframe-gaze-component/blob/master/LICENSE). WebGazer.JS, which is heavily utilized in my example, is under a [GPLv3 License](https://github.com/brownhci/WebGazer/blob/master/gplv3.md).
